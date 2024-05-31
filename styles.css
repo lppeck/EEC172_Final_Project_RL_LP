@@ -6,7 +6,40 @@ h1 {
   font-size: 150%;
 }
 
+h2
+{
+  font-family: montserrat;
+  font-size: 125%;
+}
+
+h3
+{
+  font-family: montserrat;
+  font-size: 100%;
+}
+
+h2
+{
+  font-family: montserrat;
+  font-size: 90%;
+}
+
 p {
   font-family: montserrat;
   fontsize: 18px;
+}
+
+table
+{
+  font-family: montserrat
+}
+
+td
+{
+  
+}
+
+th
+{
+  border-color: #F2F2F2
 }
