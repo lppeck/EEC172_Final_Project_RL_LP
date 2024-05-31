@@ -8,11 +8,70 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   
-<body>
+  <body>
 
-<h1>Final Project for EEC172</h1>
-<h2>Cloud enabled Security Monitor</h2>
-<p>My first paragraph.</p>
+    <h1>Final Project for EEC172</h1>
+    <h3>We built a home security system.</h3>
 
-</body>
+    <h2>FUNCTIONALITY</h2>
+    <p>Presence detection using an 8x8 IR array camera</p>
+    <p>Email notifications using AWS IoT Core and AWS SNS when motion was detected</p>
+    <p>Password-protected system disarming</p>
+    <p>128x128 OLED display for seeing system status</p>
+    <p>Intrusion Alarm</p>
+
+
+    <h2>HOW DOES IT WORK?</h2>
+    <h4>State machine:</h4>
+    <table>
+      <tr>
+        <th>Part Name</th>
+        <th>Function</th>
+        <th>Cost</th>
+      </tr>
+      <tr>
+        <td>TI CC3200 Launchpad MCU Board</td>
+        <td>Main microcontroller to control connected devices and post data to AWS</td>
+        <td>Included</td>
+      </tr>
+      <tr>
+        <td>Vishay IR Reciever</td>
+        <td>Recieves 38KHz pulsed IR radiation from our IR remote</td>
+        <td>Included</td>
+      </tr>
+      <tr>
+        <td>AT&T S10-S3 General Remote</td>
+        <td>Used for arming and disarming, as well as password input</td>
+        <td>Included</td>
+      </tr>
+      <tr>
+        <td>Adafruit 128x128 SPI OLED display</td>
+        <td>Displays system information</td>
+        <td>Included</td>
+      </tr>
+      <tr>
+        <td>Wurth Elektronik 100uF 16V Capacitor</td>
+        <td>Power filtering for IR receiver module</td>
+        <td>Included</td>
+      </tr>
+      <tr>
+        <td>Adafruit breakout board for Panasonic AMG8833 IR Array Sensor</td>
+        <td>Senses surface temperature from IR radiation in its FOV</td>
+        <td>$45</td>
+      </tr>
+      <tr>
+        <td>Generic Piezoelectric beeper</td>
+        <td>Audible alarm</td>
+        <td>Cents</td>
+      </tr>
+      <tr>
+        <td>Generic wall power to 5Vdc adapter</td>
+        <td>Suppplies power to the system</td>
+        <td>Dollars</td>
+      </tr>
+  </table>
+    <h4>Parts used:</h4>
+    </p>
+
+  </body>
 </html>
