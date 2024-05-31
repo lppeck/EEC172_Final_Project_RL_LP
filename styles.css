@@ -2,10 +2,11 @@ body {
 }
 
 h1 {
-  font-family: montserat;
-  font-size: 80px;
+  font-family: montserrat;
+  font-size: 150%;
 }
 
 p {
+  font-family: montserrat;
   fontsize: 18px;
 }
