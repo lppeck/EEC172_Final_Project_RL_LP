@@ -7,14 +7,12 @@ body {
 h1 {
   font-size: 5vw;
   text-align: center;
-  padding: 5vw;
 }
 
 h2
 {
   font-size: 3vw;
   text-align: center;
-  padding-bottom: 25vw;
 }
 
 h3
@@ -58,4 +56,9 @@ ul
   text-align: left;
   margin-right: auto;
   margin-left: auto;
+}
+
+div
+{
+  padding-bottom: 3cm;
 }
