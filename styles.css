@@ -31,14 +31,23 @@ p
 
 table
 {
+  margin-right: auto;
+  margin-left: auto;
   font-size: 1vw;
   border-collapse: collapse;
 }
 
 th, td
 {
-  border-width: 1px;
+  text-align: left;
+  border-width: 2px;
   border-style: solid;
   border-color: #657D89;
-  padding: 0px, 10px, 0px, 0px;
+  padding-right: 20px;
+}
+
+ul
+{
+  text-align: left;
+  margin-right: auto;
 }
