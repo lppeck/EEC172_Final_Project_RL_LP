@@ -1,6 +1,8 @@
 body {
   font-family: montserrat;
+  color: white;
   text-align: center;
+  background-color: #33464E;
 }
 
 h1 {
@@ -37,6 +39,6 @@ th, td
 {
   border-width: 1px;
   border-style: solid;
-  border-color: #F2F2F2;
+  border-color: #657D89;
   padding: 0px, 10px, 0px, 0px;
 }
