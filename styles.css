@@ -1,32 +1,36 @@
 body {
   font-family: montserrat;
   color: white;
-  text-align: center;
   background-color: #33464E;
 }
 
 h1 {
   font-size: 5vw;
+  text-align: center;
 }
 
 h2
 {
   font-size: 3vw;
+  text-align: center;
 }
 
 h3
 {
   font-size: 2.5vw;
+  text-align: center;
 }
 
 h4
 {
   font-size: 1.5vw;
+  text-align: center;
 }
 
 p
 {
   font-size: 1vw;
+  text-align: center;
 }
 
 table
@@ -44,10 +48,12 @@ th, td
   border-style: solid;
   border-color: #657D89;
   padding-right: 20px;
+  background-color: #51636D;
 }
 
 ul
 {
   text-align: left;
   margin-right: auto;
+  margin-left: auto;
 }
