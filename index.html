@@ -9,12 +9,12 @@
   </head>
   
   <body>
-    <div>
+    <div class = "title">
       <h1>Final Project for EEC172</h1>
       <h3>We built a home security system.</h3>
     </div>
 
-    <div>
+    <div class = "section">
       <h2>FUNCTIONALITY</h2>
       <p>Presence detection using an 8x8 IR array camera</p>
       <p>Email notifications using AWS IoT Core and AWS SNS when motion was detected</p>
@@ -24,7 +24,7 @@
       <p>Battery Powered Operation</p>
     </div>
 
-    <div>
+    <div class = "section">
       <h2>HOW DOES IT WORK?</h2>
       <p>The wall-mounted device is intended to be pointed towards a point of entry, like in the foyer of a home. The device includes a battery, and wifi connectivity for a clean-looking installation.
       <p>We are using an off the shelf breakout board from Adafruit that features an infrared radiation detector array. This sensor was built by Panasonic for presence detection. We gather the data from the 64 pixels ten times per second when the system is armed. IR radiation came come from a multitude of places. Appliances, windows, and HVAC all emit EMI in the spectrum that a human does. One thing these all have in common however, is a very low rate of change. Meanwhile, a human walking through a door would exude quick change in the camera's data. So, we employ a change in temperature over time algorithm to sense presence. In the future, we'd like to implement a simple AI model to calculate intruder detection. Our current implementation also picks up pets and movement outside a window as presence. We could solve this by adding cooperation with door sensors, and in a much more expensive case, machine vision.</p>
@@ -82,7 +82,8 @@
         </tr>
       </table>
     </div>
-    <div>
+    
+    <div class = "section">
       <h2>Resources</h2>
       <ul>
         <li>Adafruit GFX Library</li>
