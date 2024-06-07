@@ -59,8 +59,8 @@ ul
 
 .title
 {
-  width: 1vw;
-  height: 1vh;
+  width: 100vw;
+  height: 100vh;
   background-color: #0e2f44;
   text-align: center;
 }
