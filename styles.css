@@ -59,8 +59,8 @@ ul
 
 .title
 {
-  padding-top: 40%;
-  padding-bottom: 40%;
+  width: 1vw;
+  height: 1vh;
   background-color: #0e2f44;
   text-align: center;
 }
