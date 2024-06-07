@@ -62,3 +62,12 @@ div
 {
   padding-bottom: 3cm;
 }
+
+img
+{
+  padding-bottom: 2cm;
+  padding-top: 1cm;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
