@@ -29,9 +29,7 @@
       <p>The wall-mounted device is intended to be pointed towards a point of entry, like in the foyer of a home. The device includes a battery, and wifi connectivity for a clean-looking installation.
       <p>We are using an off the shelf breakout board from Adafruit that features an infrared radiation detector array. This sensor was built by Panasonic for presence detection. We gather the data from the 64 pixels ten times per second when the system is armed. IR radiation came come from a multitude of places. Appliances, windows, and HVAC all emit EMI in the spectrum that a human does. One thing these all have in common however, is a very low rate of change. Meanwhile, a human walking through a door would exude quick change in the camera's data. So, we employ a change in temperature over time algorithm to sense presence. In the future, we'd like to implement a simple AI model to calculate intruder detection. Our current implementation also picks up pets and movement outside a window as presence. We could solve this by adding cooperation with door sensors, and in a much more expensive case, machine vision.</p>
       <p>Now however, we have designed the software so that when the device is armed, and it detects an intruder, a timer starts counting down until it recieves the de-arm password from the remote.
-      
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/HomeScreen.jpg" style="width:auto;height:auto"/> <!-- <span class="caption"> </span> --> </div> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/AlarmActivated.jpg" style="width:auto;height:auto" /> <!-- <span class="caption"> </span> --> </div> </div>
-      
+    
       <h4 class = "image_title">Circuit Diagram</h4>
       <img src = "EEC172_Final_Project_Circuit.png" alt = "Circuit Diagram">
       <h4 class = "image_title">Logic Block Diagram</h4>
