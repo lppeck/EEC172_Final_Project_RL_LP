@@ -11,8 +11,8 @@
   <body>
     <div class = "container">
       <div class = "title">
-        <h1>Final Project for EEC172</h1>
-        <h3>We built a home security system.</h3>
+        <h1>EEC 172 Final Project</h1>
+        <h1>IR Motion Security System</h1>
       </div>
   
       <div class = "section">
@@ -32,10 +32,42 @@
         <p>Now however, we have designed the software so that when the device is armed, and it detects an intruder, a timer starts counting down until it recieves the de-arm password from the remote.
   
         <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/HomeScreen.jpg" style="width:auto;height:5in"/> <!-- <span class="caption"> </span> --> </div> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/AlarmActivated.jpg" style="width:auto;height:5in" /> <!-- <span class="caption"> </span> --> </div> </div>
-        <h2>Video Demo</h2> <div style="text-align:center;margin:auto;max-width:560px"> <div style="padding-bottom:56.25%;position:relative;height:0;"> <iframe style="left:0;top:0;width:100%;height:100%;position:absolute;" width="560" height="315" src="https://www.youtube.com/embed/EQvVHPT_QPA" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div> </div>
-  
-  
+        <h2>Video Demo</h2> 
+          <div style="text-align:center;margin:auto;max-width:560px"> 
+            <div style="padding-bottom:56.25%;position:relative;height:0;"> 
+              <iframe style="left:0;top:0;width:100%;height:100%;position:absolute;" width="560" height="315" src="https://www.youtube.com/embed/EQvVHPT_QPA" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen> 
+              </iframe> </div> </div>
+
         <h2 id="design">Design</h2>
+        <h3 id="system-architecture">I. Functional Specification</h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:stretch;">
+          <div style="display:flex;flex-direction:column;justify-content:center;flex:1 0 400px;font-size:24px;">
+            On boot, we initialize our custom home screen and display it on the OLED.
+            The home screen gives users options to arm the system (+) or set a 
+            password (1). If the user tries to arm the system without first setting a
+            password, the system will tell the user to set a password (displayed on OLED).
+            When password setting is selected, if there exists a previously existing
+            password, the system will ask for the user to enter the previous password as
+            a security verification measure. If the correct password is entered in this 
+            case, the system will then ask the user to enter the new password they want to
+            set. Once entered, the system will return the homescreen. To arm the system, 
+            the user presses +, and the system will ask for the password. While the password
+            is not correct, the system will stay in this state. When the correct password is
+            entered, the system is armed, and begins to poll the IR Camera for human movement,
+            filtering out movement (or pixel changes) that are not within the range of human
+            body temperature. Once a detection is made, the system starts a 10 second countdown,
+            and alerts the user to enter the password to disarm the system. If the correct
+            password is entered, the system will return to the homescreen. If the countdown reaches 0
+            without the correct password being entered, the alarm will be triggered, the LED
+            will turn on, and a notification will be sent through AWS. 
+            The alarm can be disarmed by entering the correct password.
+          </div>
+          <div style="display:flex;align-items:center;flex:0 0 900px;">
+            <div class="fig">
+              <img src="./Photos/EEC_172_State_Diagram.png" style="width:100%;height:auto;" />
+              <span class="caption">System Flowchart</span>
+            </div>
+          </div>    
         <h3 id="system-architecture">II. System Architecture</h3>
         <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:stretch;">
           <div style="display:flex;flex-direction:column;justify-content:center;flex:1 0 400px;font-size:24px;">
@@ -57,7 +89,7 @@
             that an intruder was detected. The system can be disarmed from this state
             by entering in the correct password.
           </div>
-          <div style="display:flex;align-items:center;flex:0 0 800px;">
+          <div style="display:flex;align-items:center;flex:0 0 900px;">
             <div class="fig">
               <img src="block_diagram.png" style="width:100%;height:auto;" />
               <span class="caption">System Flowchart</span>
