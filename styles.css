@@ -61,13 +61,12 @@ ul
 {
   width: calc(100% - 40px); /* Adjust width to factor in side margins */
   max-width: 1000px; /* Add max-width to prevent the title from becoming too wide */
-  height: 100vh;
   background-color: #0e2f44;
   text-align: center;
   margin: 0 auto; /* Center the title horizontally */
   border: 0px;
-  padding-top: auto;
-  padding-bottom: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .section
