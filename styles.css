@@ -27,7 +27,7 @@ h4
   text-align: center;
 }
 
-h1, h2, h3, h4 {
+h2, h3, h4 {
   border-bottom: 2px solid white; /* Add a white underline with 2px thickness */
 }
 
