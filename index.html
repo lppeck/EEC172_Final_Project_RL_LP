@@ -65,7 +65,7 @@
           <div style="display:flex;align-items:center;flex:0 0 900px;">
             <div class="fig">
               <img src="./Photos/EEC_172_State_Diagram.png" style="width:100%;height:auto;" />
-              <span class="caption">System Flowchart</span>
+              <span class="caption">State Diagram</span>
             </div>
           </div> 
         </div>
@@ -97,15 +97,58 @@
             </div>
           </div>
         </div>
+
+        <h2 id="design">Implementation</h2>
+        <h3 id="system-architecture">Security System Logic</h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:stretch;">
+          <div style="display:flex;flex-direction:column;justify-content:center;flex:1 0 400px;font-size:24px;">
+            Our security system logic was done locally on the CC3200 Texas Instruments
+            board. We used Code Composer studio, or CCS, in order to write the security
+            logic of the system in the C language. Setting the password would store the
+            password in a global variable, and arming the system would also be set in 
+            another global variable. The initialization of the IR camera and the corresponding
+            data reads/writes were done through I2C. The OLED received and sent data through 
+            SPI. Edge-cases were handled by the defined states, which each had their own
+            unique flags as indicators.
+          </div>
+          <div style="display:flex;align-items:center;flex:0 0 900px;">
+            <div class="fig">
+              <img src="CodeComposerStudio.png" style="width:100%;height:auto;" />
+              <span class="caption">CCS IDE</span>
+            </div>
+          </div>
+        </div>
+        <h3 id="system-architecture">Hardware Implementation</h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:stretch;">
+          <div style="display:flex;flex-direction:column;justify-content:center;flex:1 0 400px;font-size:24px;">
+            For our hardware implementation, we used an adafruit AMG 8833 IR Camera
+            and an AT&T remote control as inputs to control the software logic of the 
+            security system. The user entered necessary text and commands through the AT&T remote,
+            and movement detection was done through the IR Camera. Display for the security
+            system user interface was done using the Adafruit SSD1351 OLED. The CC3200 sent
+            formatted json messages through AWS to our emails when detections occurred and
+            when new passwords were set.
+          </div>
+          <div style="display:flex;align-items:center;flex:0 0 900px;">
+            <div class="fig">
+              <img src="EEC172_Final_Project_Circuit.png" style="width:100%;height:auto;" />
+              <span class="caption">Circuit Diagram</span>
+            </div>
+          </div>
+        </div>
+        
+        
+        <h2>Challenges</h2>
+
+
+        <h2>Future Work</h2>
         
         <h4 class = "image_title">Circuit Diagram</h4>
         <img src = "EEC172_Final_Project_Circuit.png" alt = "Circuit Diagram">
         <h4 class = "image_title">Logic Block Diagram</h4>
         <img src = "block_diagram.png" alt = "Logical Block Diagram">
-        
-          
-          
-        <h4>Bill of Materials</h4>
+            
+        <h2>Bill of Materials</h2>
         <table>
           <tr>
             <th>Part Name</th>
