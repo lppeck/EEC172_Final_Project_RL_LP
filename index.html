@@ -32,11 +32,45 @@
 
       <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/HomeScreen.jpg" style="width:auto;height:5in"/> <!-- <span class="caption"> </span> --> </div> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/AlarmActivated.jpg" style="width:auto;height:5in" /> <!-- <span class="caption"> </span> --> </div> </div>
       <h2>Video Demo</h2> <div style="text-align:center;margin:auto;max-width:560px"> <div style="padding-bottom:56.25%;position:relative;height:0;"> <iframe style="left:0;top:0;width:100%;height:100%;position:absolute;" width="560" height="315" src="https://www.youtube.com/embed/EQvVHPT_QPA" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div> </div>
-        
+
+
+      <h1 id="design">Design</h1>
+      <h2 id="system-architecture">System Architecture</h2>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;">
+        <div style="display:inline-block;vertical-align:top;flex:1 0 400px;">
+          In our implementation, our main is responsible for GPIO, SPI, OLED,
+          AMG8833, AWS, and IR remote interrupt intializations. A while loop is then
+          entered, where IR remote transmissions are constantly being checked for.
+          The system abstracts the complexity of the security logic through a series
+          of functions. Setting the password is done through pressing button 1.
+          Once the password is set, the user can arm the system by pressing "+".
+          When the system is armed, it will begin polling the IR Camera's sensor
+          data for human movement (using heat thresholds to determine if movement
+          is human), and if movement is detected, the motion_detected flag is set
+          to 1. Once motion is detected, a countdown timer is started, dispalying the 
+          time remaining on the OLED, and the system continously looks for the correct
+          password to be entered. If the correct password is entered, the system
+          is disarmed and the appropriate flags are reset, and the system returns to
+          the home screen. If the correct password is not entered in time, an alarm
+          is triggered and a notification is sent through AWS to email notifying
+          that an intruder was detected. The system can be disarmed from this state
+          by entering in the correct password.
+        </div>
+        <div style="display:inline-block;vertical-align:top;flex:0 0 400px;">
+          <div class="fig">
+            <img src="block_diagram.png" style="width:90%;height:auto;" />
+            <span class="caption">System Flowchart</span>
+          </div>
+        </div>
+      </div>
+      
       <h4 class = "image_title">Circuit Diagram</h4>
       <img src = "EEC172_Final_Project_Circuit.png" alt = "Circuit Diagram">
       <h4 class = "image_title">Logic Block Diagram</h4>
       <img src = "block_diagram.png" alt = "Logical Block Diagram">
+      
+        
+        
       <h4>Bill of Materials</h4>
       <table>
         <tr>
