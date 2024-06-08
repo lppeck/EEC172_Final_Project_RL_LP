@@ -9,131 +9,132 @@
   </head>
   
   <body>
-    <div class = "title">
-      <h1>Final Project for EEC172</h1>
-      <h3>We built a home security system.</h3>
-    </div>
-
-    <div class = "section">
-      <h2>FUNCTIONALITY</h2>
-      <p>Presence detection using an 8x8 IR array camera</p>
-      <p>Email notifications using AWS IoT Core and AWS SNS when motion was detected</p>
-      <p>Password-protected system disarming</p>
-      <p>128x128 OLED display shows system status</p>
-      <p>Intrusion Alarm</p>
-      <p>Battery Powered Operation</p>
-    </div>
-
-    <div class = "section">
-      <h2>HOW DOES IT WORK?</h2>
-      <p>The wall-mounted device is intended to be pointed towards a point of entry, like in the foyer of a home. The device includes a battery, and wifi connectivity for a clean-looking installation.
-      <p>We are using an off the shelf breakout board from Adafruit that features an infrared radiation detector array. This sensor was built by Panasonic for presence detection. We gather the data from the 64 pixels ten times per second when the system is armed. IR radiation came come from a multitude of places. Appliances, windows, and HVAC all emit EMI in the spectrum that a human does. One thing these all have in common however, is a very low rate of change. Meanwhile, a human walking through a door would exude quick change in the camera's data. So, we employ a change in temperature over time algorithm to sense presence. In the future, we'd like to implement a simple AI model to calculate intruder detection. Our current implementation also picks up pets and movement outside a window as presence. We could solve this by adding cooperation with door sensors, and in a much more expensive case, machine vision.</p>
-      <p>Now however, we have designed the software so that when the device is armed, and it detects an intruder, a timer starts counting down until it recieves the de-arm password from the remote.
-
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/HomeScreen.jpg" style="width:auto;height:5in"/> <!-- <span class="caption"> </span> --> </div> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/AlarmActivated.jpg" style="width:auto;height:5in" /> <!-- <span class="caption"> </span> --> </div> </div>
-      <h2>Video Demo</h2> <div style="text-align:center;margin:auto;max-width:560px"> <div style="padding-bottom:56.25%;position:relative;height:0;"> <iframe style="left:0;top:0;width:100%;height:100%;position:absolute;" width="560" height="315" src="https://www.youtube.com/embed/EQvVHPT_QPA" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div> </div>
-
-
-      <h2 id="design">Design</h1>
-      <h3 id="system-architecture">System Architecture</h3>
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:stretch;">
-        <div style="display:flex;flex-direction:column;justify-content:center;flex:1 0 400px;font-size:24px;">
-          In our implementation, our main is responsible for GPIO, SPI, OLED,
-          AMG8833, AWS, and IR remote interrupt intializations. A while loop is then
-          entered, where IR remote transmissions are constantly being checked for.
-          The system abstracts the complexity of the security logic through a series
-          of functions. Setting the password is done through pressing button 1.
-          Once the password is set, the user can arm the system by pressing "+".
-          When the system is armed, it will begin polling the IR Camera's sensor
-          data for human movement (using heat thresholds to determine if movement
-          is human), and if movement is detected, the motion_detected flag is set
-          to 1. Once motion is detected, a countdown timer is started, dispalying the 
-          time remaining on the OLED, and the system continously looks for the correct
-          password to be entered. If the correct password is entered, the system
-          is disarmed and the appropriate flags are reset, and the system returns to
-          the home screen. If the correct password is not entered in time, an alarm
-          is triggered and a notification is sent through AWS to email notifying
-          that an intruder was detected. The system can be disarmed from this state
-          by entering in the correct password.
-        </div>
-        <div style="display:flex;align-items:center;flex:0 0 1000px;">
-          <div class="fig">
-            <img src="block_diagram.png" style="width:100%;height:auto;" />
-            <span class="caption">System Flowchart</span>
+    <div class = "container">
+      <div class = "title">
+        <h1>Final Project for EEC172</h1>
+        <h3>We built a home security system.</h3>
+      </div>
+  
+      <div class = "section">
+        <h2>FUNCTIONALITY</h2>
+        <p>Presence detection using an 8x8 IR array camera</p>
+        <p>Email notifications using AWS IoT Core and AWS SNS when motion was detected</p>
+        <p>Password-protected system disarming</p>
+        <p>128x128 OLED display shows system status</p>
+        <p>Intrusion Alarm</p>
+        <p>Battery Powered Operation</p>
+      </div>
+  
+      <div class = "section">
+        <h2>HOW DOES IT WORK?</h2>
+        <p>The wall-mounted device is intended to be pointed towards a point of entry, like in the foyer of a home. The device includes a battery, and wifi connectivity for a clean-looking installation.
+        <p>We are using an off the shelf breakout board from Adafruit that features an infrared radiation detector array. This sensor was built by Panasonic for presence detection. We gather the data from the 64 pixels ten times per second when the system is armed. IR radiation came come from a multitude of places. Appliances, windows, and HVAC all emit EMI in the spectrum that a human does. One thing these all have in common however, is a very low rate of change. Meanwhile, a human walking through a door would exude quick change in the camera's data. So, we employ a change in temperature over time algorithm to sense presence. In the future, we'd like to implement a simple AI model to calculate intruder detection. Our current implementation also picks up pets and movement outside a window as presence. We could solve this by adding cooperation with door sensors, and in a much more expensive case, machine vision.</p>
+        <p>Now however, we have designed the software so that when the device is armed, and it detects an intruder, a timer starts counting down until it recieves the de-arm password from the remote.
+  
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;padding-top:20px"> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/HomeScreen.jpg" style="width:auto;height:5in"/> <!-- <span class="caption"> </span> --> </div> <div style="display: inline-block; vertical-align: bottom;"> <img src="./Photos/AlarmActivated.jpg" style="width:auto;height:5in" /> <!-- <span class="caption"> </span> --> </div> </div>
+        <h2>Video Demo</h2> <div style="text-align:center;margin:auto;max-width:560px"> <div style="padding-bottom:56.25%;position:relative;height:0;"> <iframe style="left:0;top:0;width:100%;height:100%;position:absolute;" width="560" height="315" src="https://www.youtube.com/embed/EQvVHPT_QPA" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div> </div>
+  
+  
+        <h2 id="design">Design</h1>
+        <h3 id="system-architecture">II. System Architecture</h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:stretch;">
+          <div style="display:flex;flex-direction:column;justify-content:center;flex:1 0 400px;font-size:24px;">
+            In our implementation, our main is responsible for GPIO, SPI, OLED,
+            AMG8833, AWS, and IR remote interrupt intializations. A while loop is then
+            entered, where IR remote transmissions are constantly being checked for.
+            The system abstracts the complexity of the security logic through a series
+            of functions. Setting the password is done through pressing button 1.
+            Once the password is set, the user can arm the system by pressing "+".
+            When the system is armed, it will begin polling the IR Camera's sensor
+            data for human movement (using heat thresholds to determine if movement
+            is human), and if movement is detected, the motion_detected flag is set
+            to 1. Once motion is detected, a countdown timer is started, dispalying the 
+            time remaining on the OLED, and the system continously looks for the correct
+            password to be entered. If the correct password is entered, the system
+            is disarmed and the appropriate flags are reset, and the system returns to
+            the home screen. If the correct password is not entered in time, an alarm
+            is triggered and a notification is sent through AWS to email notifying
+            that an intruder was detected. The system can be disarmed from this state
+            by entering in the correct password.
+          </div>
+          <div style="display:flex;align-items:center;flex:0 0 1000px;">
+            <div class="fig">
+              <img src="block_diagram.png" style="width:100%;height:auto;" />
+              <span class="caption">System Flowchart</span>
+            </div>
           </div>
         </div>
+        
+        <h4 class = "image_title">Circuit Diagram</h4>
+        <img src = "EEC172_Final_Project_Circuit.png" alt = "Circuit Diagram">
+        <h4 class = "image_title">Logic Block Diagram</h4>
+        <img src = "block_diagram.png" alt = "Logical Block Diagram">
+        
+          
+          
+        <h4>Bill of Materials</h4>
+        <table>
+          <tr>
+            <th>Part Name</th>
+            <th>Function</th>
+            <th>Cost</th>
+          </tr>
+          <tr>
+            <td>TI CC3200 Launchpad MCU Board</td>
+            <td>Main microcontroller to control connected devices and post data to AWS</td>
+            <td>Included</td>
+          </tr>
+          <tr>
+            <td>Vishay IR Reciever</td>
+            <td>Recieves 38KHz pulsed IR radiation from our IR remote</td>
+            <td>Included</td>
+          </tr>
+          <tr>
+            <td>AT&T S10-S3 General Remote</td>
+            <td>Used for arming and disarming, as well as password input</td>
+            <td>Included</td>
+          </tr>
+          <tr>
+            <td>Adafruit 128x128 SPI OLED display</td>
+            <td>Displays system information</td>
+            <td>Included</td>
+          </tr>
+          <tr>
+            <td>Wurth Elektronik 100uF 16V Capacitor</td>
+            <td>Power filtering for IR receiver module</td>
+            <td>Included</td>
+          </tr>
+          <tr>
+            <td>Adafruit breakout board for Panasonic AMG8833 IR Array Sensor</td>
+            <td>Senses surface temperature from IR radiation in its FOV</td>
+            <td>$45</td>
+          </tr>
+          <tr>
+            <td>Generic Piezoelectric beeper</td>
+            <td>Audible alarm</td>
+            <td>Cents</td>
+          </tr>
+          <tr>
+            <td>Generic wall power to 5Vdc adapter</td>
+            <td>Supplies power to the system</td>
+            <td>Dollars</td>
+          </tr>
+        </table>
       </div>
       
-      <h4 class = "image_title">Circuit Diagram</h4>
-      <img src = "EEC172_Final_Project_Circuit.png" alt = "Circuit Diagram">
-      <h4 class = "image_title">Logic Block Diagram</h4>
-      <img src = "block_diagram.png" alt = "Logical Block Diagram">
-      
-        
-        
-      <h4>Bill of Materials</h4>
-      <table>
-        <tr>
-          <th>Part Name</th>
-          <th>Function</th>
-          <th>Cost</th>
-        </tr>
-        <tr>
-          <td>TI CC3200 Launchpad MCU Board</td>
-          <td>Main microcontroller to control connected devices and post data to AWS</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>Vishay IR Reciever</td>
-          <td>Recieves 38KHz pulsed IR radiation from our IR remote</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>AT&T S10-S3 General Remote</td>
-          <td>Used for arming and disarming, as well as password input</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>Adafruit 128x128 SPI OLED display</td>
-          <td>Displays system information</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>Wurth Elektronik 100uF 16V Capacitor</td>
-          <td>Power filtering for IR receiver module</td>
-          <td>Included</td>
-        </tr>
-        <tr>
-          <td>Adafruit breakout board for Panasonic AMG8833 IR Array Sensor</td>
-          <td>Senses surface temperature from IR radiation in its FOV</td>
-          <td>$45</td>
-        </tr>
-        <tr>
-          <td>Generic Piezoelectric beeper</td>
-          <td>Audible alarm</td>
-          <td>Cents</td>
-        </tr>
-        <tr>
-          <td>Generic wall power to 5Vdc adapter</td>
-          <td>Supplies power to the system</td>
-          <td>Dollars</td>
-        </tr>
-      </table>
+      <div class = "section">
+        <h2>Resources</h2>
+        <ul>
+          <li>Adafruit GFX Library</li>
+          <li>Adafruit SSD1351 OLED Library</li>
+          <li>Panasonic AMG8833 Datasheet</li>
+          <li>Panasonic AMG8833 I2C Interface Datasheet</li>
+          <li>CC3200 DriverLib Documentation</li>
+          <li>CC3200 DriverLib I2C Demo</li>
+          <li>CC3200 DriverLib SSL Demo</li>
+          <li>Lab 2, Lab 3, and Lab 4 Documents</li>
+        </ul>
+      </div>
     </div>
-    
-    <div class = "section">
-      <h2>Resources</h2>
-      <ul>
-        <li>Adafruit GFX Library</li>
-        <li>Adafruit SSD1351 OLED Library</li>
-        <li>Panasonic AMG8833 Datasheet</li>
-        <li>Panasonic AMG8833 I2C Interface Datasheet</li>
-        <li>CC3200 DriverLib Documentation</li>
-        <li>CC3200 DriverLib I2C Demo</li>
-        <li>CC3200 DriverLib SSL Demo</li>
-        <li>Lab 2, Lab 3, and Lab 4 Documents</li>
-      </ul>
-    </div>
-
   </body>
 </html>
