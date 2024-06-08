@@ -113,7 +113,7 @@
           </div>
           <div style="display:flex;align-items:center;flex:0 0 900px;">
             <div class="fig">
-              <img src="CodeComposerStudio.png" style="width:100%;height:auto;" />
+              <img src="./Photos/CodeComposerStudio.png" style="width:100%;height:auto;" />
               <span class="caption">CCS IDE</span>
             </div>
           </div>
@@ -135,13 +135,66 @@
               <span class="caption">Circuit Diagram</span>
             </div>
           </div>
+        </div>   
+        
+        <h2 id="design">Challenges</h2>
+        <h3 id="system-architecture">Edge Case Logic</h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:stretch;">
+          <div style="display:flex;flex-direction:column;justify-content:center;flex:1 0 400px;font-size:24px;">
+            We initially did not consider edge cases. For example, for the case when the
+            user tries to set a password, but doesn't set a password and instead presses "+"
+            to arm the system, then goes back to setting a password by pressing "1", the flags
+            that determine the state were not reset properly. As a results, incorrect states would
+            be reached, in this such case the system would ask for a new password to set
+            instead of asking for the previous password, a security risk. To fix this, we reset flags of the 
+            states beside the current state when first entering the current state. This ensured
+            that flags would be properly reset, and by extension, the states would be entered
+            in the correct order. Additionally, on first bootup, there was no initial password set,
+            so the user could arm the system immediately without a password, which would then 
+            disarm the system immediately when motion was detected. A password must be set, so we
+            added a check to ensure that a password was set before arming the system.
+          </div>
+          <div style="display:flex;align-items:center;flex:0 0 900px;">
+            <div class="fig">
+              <img src="./Photos/SetPassOnStartup.jpg" style="width:100%;height:auto;" />
+              <span class="caption">Ensure a password is set before arming</span>
+            </div>
+          </div>
         </div>
-        
-        
-        <h2>Challenges</h2>
+        <h3 id="system-architecture">I2C IR Camera Hardware Writes/Reads</h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:stretch;">
+          <div style="display:flex;flex-direction:column;justify-content:center;flex:1 0 400px;font-size:24px;">
+            On the hardware side, we experienced issues with the AMG8833 IR Camera. When we
+            loaded code onto the CC3200 (entered the debug mode) multiple times while the board
+            was still connected, the address of the IR Camera would fail to show up. As a result, data
+            could not be read or written from and to the IR Camera. We realized that each time we wanted
+            to re-flash new code, we had to disconnect the CC3200 from the USB port, and plug it
+            back into the computer.
+          </div>
+          <div style="display:flex;align-items:center;flex:0 0 900px;">
+            <div class="fig">
+              <img src="./Photos/IRCameraPic.jpg" style="width:100%;height:auto;" />
+              <span class="caption">Adafruit AMG8833 IR Camera</span>
+            </div>
+          </div>
+        </div>
 
-
-        <h2>Future Work</h2>
+        <h2 id="design">Future Work</h2>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:stretch;">
+          <div style="display:flex;flex-direction:column;justify-content:center;flex:1 0 400px;font-size:24px;">
+            We would have liked to add a chassis to our project for a more polished security system
+            appearance. Additionally, we had a LED as an indicator for when the alarm was tripped,
+            but moving forward, a noise buzzer would be an impactful component to include into our system.
+            For appearance purposes, we would've also liked to display the IR Camera's live feed onto 
+            a display screen, however this is not strictly necessary as detections can be made without it.
+          </div>
+          <div style="display:flex;align-items:center;flex:0 0 900px;">
+            <div class="fig">
+              <img src="./Photos/IRCameraImaging.png" style="width:100%;height:auto;" />
+              <span class="caption">IR Camera Display Feed</span>
+            </div>
+          </div>
+        </div>
         
         <h4 class = "image_title">Circuit Diagram</h4>
         <img src = "EEC172_Final_Project_Circuit.png" alt = "Circuit Diagram">
@@ -154,46 +207,49 @@
             <th>Part Name</th>
             <th>Function</th>
             <th>Cost</th>
+            <th>Obtain From</th>
           </tr>
           <tr>
             <td>TI CC3200 Launchpad MCU Board</td>
             <td>Main microcontroller to control connected devices and post data to AWS</td>
             <td>Included</td>
+            <td>Lab</td>
           </tr>
           <tr>
-            <td>Vishay IR Reciever</td>
+            <td>Vishay TSOP311xx/313xx/315xx IR Receiver</td>
             <td>Recieves 38KHz pulsed IR radiation from our IR remote</td>
             <td>Included</td>
+            <td>Lab</td>
           </tr>
           <tr>
             <td>AT&T S10-S3 General Remote</td>
             <td>Used for arming and disarming, as well as password input</td>
             <td>Included</td>
+            <td>Lab</td>
           </tr>
           <tr>
-            <td>Adafruit 128x128 SPI OLED display</td>
+            <td>Adafruit OLED SSD1351 Display</td>
             <td>Displays system information</td>
             <td>Included</td>
+            <td>Lab</td>
           </tr>
           <tr>
             <td>Wurth Elektronik 100uF 16V Capacitor</td>
             <td>Power filtering for IR receiver module</td>
             <td>Included</td>
+            <td>Lab</td>
           </tr>
           <tr>
             <td>Adafruit breakout board for Panasonic AMG8833 IR Array Sensor</td>
             <td>Senses surface temperature from IR radiation in its FOV</td>
             <td>$45</td>
+            <td>Amazon</td>
           </tr>
           <tr>
-            <td>Generic Piezoelectric beeper</td>
-            <td>Audible alarm</td>
-            <td>Cents</td>
-          </tr>
-          <tr>
-            <td>Generic wall power to 5Vdc adapter</td>
-            <td>Supplies power to the system</td>
-            <td>Dollars</td>
+            <td>LED</td>
+            <td>Turns on when intruder is detected</td>
+            <td>$0.10</td>
+            <td>Amazon</td>
           </tr>
         </table>
       </div>
