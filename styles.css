@@ -17,13 +17,18 @@ h2
 
 h3
 {
-  font-size: 2.5vw;
+  font-size: 2vw;
   text-align: center;
 }
 
 h4
 {
   font-size: 1.5vw;
+  text-align: center;
+}
+
+h1, h2, h3, h4 {
+  border-bottom: 2px solid white; /* Add a white underline with 2px thickness */
 }
 
 p
